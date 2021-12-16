@@ -1,0 +1,36 @@
+<html>
+  <head>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/jmnote/plantuml-encoder/d133f316/dist/plantuml-encoder.min.js"></script>
+  <script>
+$(() => {
+    $('.idef0').each(function() {
+        const alt = $(this).text();
+        const src = 'http://localhost:5000/svg/' +
+            window.plantumlEncoder.encode(alt);
+        $(this).replaceWith($('<img>').attr('src', src).attr('alt', alt));
+    });
+});
+    </script>
+  </head>
+  <body>
+      <code class="idef0">
+[Cook Pizza]
+    in Ingredients
+    res Customer Order
+    res Recipe
+    ctrl Chef
+    ctrl Kitchen
+    out Pizza
+
+[FNC-3.5: Take Order]
+    out Customer Order
+    res Menu
+    ctrl Wait Staff
+    in Pizza
+    in Hungry Customer
+    out Satisfied Customer
+    out Mess
+      </code>
+  </body>
+</html>
