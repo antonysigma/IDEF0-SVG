@@ -28,7 +28,7 @@ module IDEF0
 
     def to_svg
       <<-XML
-<rect x='#{x1}' y='#{y1}' width='#{width}' height='#{height}' fill='none' stroke='black' />
+<rect x='#{x1}' y='#{y1}' width='#{width}' height='#{height}' fill='lightyellow' stroke='black' filter="url(#f1fkw0u0qbu464)" />
 <text text-anchor='middle' x='#{x1 + (width / 2)}' y='#{y1 + (height / 2)}'>#{name}</text>
 XML
     end
