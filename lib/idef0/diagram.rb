@@ -149,9 +149,10 @@ viewBox='#{x1.to_f} #{y1.to_f} #{x2.to_f} #{y2.to_f}'
   }
   text {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 13.5px;
   }
 </style>
+<filter height="300%" id="f1fkw0u0qbu464" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter>
 <g>
   #{generate_boxes}
   #{generate_lines}
