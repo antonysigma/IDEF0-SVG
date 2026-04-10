@@ -12,10 +12,11 @@ module IDEF0
 
     def parsed_title
       raw_title = @name.to_s.strip
-      parts = raw_title.split(':', 2)
-
-      return ["", raw_title] if parts.length == 1
-      [parts[0].strip, parts[1].strip]
+      if raw_title =~ /\A([a-zA-Z]{3}-[^:]+):\s*(.*)\z/
+        return [Regexp.last_match(1).strip, Regexp.last_match(2).strip]
+      else
+        return ["", raw_title]
+      end
     end
 
     def function_id
