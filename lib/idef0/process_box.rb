@@ -10,8 +10,24 @@ module IDEF0
       [-right_side.anchor_count, left_side.anchor_count]
     end
 
+    def parsed_title
+      raw_title = @name.to_s.strip
+      parts = raw_title.split(':', 2)
+
+      return ["", raw_title] if parts.length == 1
+      [parts[0].strip, parts[1].strip]
+    end
+
+    def function_id
+      parsed_title[0].upcase
+    end
+
+    def function_name
+      parsed_title[1]
+    end
+
     def width
-      [Label.length(@name)+40, [top_side.anchor_count, bottom_side.anchor_count].max*20+20].max
+      [Label.length(function_name)+40, [top_side.anchor_count, bottom_side.anchor_count].max*20+20].max
     end
 
     def height
@@ -27,23 +43,13 @@ module IDEF0
     end
 
     def to_svg
-      raw_title = name.to_s.strip
-
-      if raw_title =~ /\A([^:]+):\s*(.*)\z/
-        fnc_id = Regexp.last_match(1).strip
-        fnc_name = Regexp.last_match(2).strip
-      else
-        fnc_id = "FNC-1"
-        fnc_name = raw_title
-      end
-
       title = CentredLabel.new(
-        fnc_name,
+        function_name,
         Point.new(x1 + (width / 2), y1 + (height / 2) - 6)
       )
 
       identifier = RightAlignedLabel.new(
-        fnc_id.upcase,
+        function_id,
         Point.new(x2 - 8, y2 - 8)
       )
 
